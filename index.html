@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Toán Học - Chuyển đổi số</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- GIAO DIỆN 1: Bắt đầu -->
+    <div id="ui-1" class="screen">
+        <div class="logo">Khoa Toán - Tin học</div>
+        <div class="login-box">
+            <input type="text" id="playerName" placeholder="Nhập tên người chơi">
+            <button id="btnPlay">PLAY</button>
+        </div>
+    </div>
 
+    <!-- GIAO DIỆN 2: Game Chính -->
+    <div id="ui-2" class="screen" style="display: none;">
+        <div class="game-header">
+            <div class="question-box" id="questionBox">Câu hỏi: ...</div>
+            <div class="score-box">Điểm: <span id="score">0</span></div>
+        </div>
+        
+        <div id="game-area">
+            <div class="gun" id="gun"></div>
+        </div>
+
+        <div class="game-footer">
+            <div class="health-box">Máu: <span id="health">❤️❤️❤️</span></div>
+            <div class="timer-box" style="display:none;">Thời gian: <span id="timer">30</span>s</div>
+        </div>
+    </div>
+
+    <!-- GIAO DIỆN 3: Kết thúc -->
+    <div id="ui-3" class="screen" style="display: none;">
+        <div class="end-container">
+            <div class="leaderboard">
+                <h3>TOP 10</h3>
+                <ul id="top10-list">
+                    <li>Tính năng Leaderboard online sẽ được cập nhật sau</li>
+                </ul>
+            </div>
+            <div class="result-box">
+                <h3>Your Score</h3>
+                <h1 id="final-score">0</h1>
+                <button id="btnPlayAgain">Play Again</button>
+                <button id="btnNewGame">New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
