@@ -1,1 +1,25 @@
+body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: Arial, sans-serif; overflow: hidden; background-color: #f0f8ff; }
+.screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; }
 
+/* UI 1 */
+#ui-1 .logo { position: absolute; top: 20px; left: 20px; font-weight: bold; color: red; font-size: 20px;}
+#ui-1 .login-box { margin-top: 30vh; text-align: center; border: 2px solid #333; padding: 40px; border-radius: 20px; background: white; }
+#ui-1 input { padding: 10px; font-size: 18px; margin-bottom: 20px; text-align: center; border: 1px solid #ccc; width: 250px;}
+#ui-1 button { padding: 10px 30px; font-size: 18px; cursor: pointer; border-radius: 20px; background: white; border: 2px solid #333;}
+
+/* UI 2 */
+.game-header { width: 90%; height: 15%; display: flex; margin-top: 10px; border: 2px solid blue; border-radius: 10px; background: white;}
+.question-box { width: 70%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border-right: 2px solid blue; }
+.score-box { width: 30%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;}
+#game-area { width: 90%; height: 65%; position: relative; border: 2px solid #333; margin-top: 10px; overflow: hidden; background: #e0f7fa;}
+.gun { position: absolute; bottom: 0; width: 10px; height: 80px; background-color: red; transform-origin: bottom center; left: 50%; z-index: 10;}
+.game-footer { width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: bold; color: red;}
+
+/* Vịt / Gà mang đáp án */
+.duck { position: absolute; width: 60px; height: 60px; background-color: #ffd700; border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; cursor: crosshair; user-select: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+/* UI 3 */
+.end-container { display: flex; width: 80%; height: 60%; margin-top: 15vh; border: 2px solid #333; background: white; border-radius: 10px;}
+.leaderboard { width: 50%; padding: 20px; border-right: 2px solid #333; color: red; }
+.result-box { width: 50%; padding: 20px; text-align: center; color: green; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+.result-box button { margin: 10px; padding: 10px 20px; font-size: 16px; color: blue; border: 2px solid blue; background: white; cursor: pointer; border-radius: 10px;}
