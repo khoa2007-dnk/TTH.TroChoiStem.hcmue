@@ -143,6 +143,11 @@ body, html {
     display: flex; 
     align-items: center; 
     justify-content: center; 
+    
+    /* Đẩy chữ xuống phần bụng vịt */
+    padding-top: 30px; 
+    box-sizing: border-box; 
+    
     font-weight: 900; 
     font-size: 22px; 
     color: #ff0000; 
