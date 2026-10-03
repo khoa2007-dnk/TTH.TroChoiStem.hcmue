@@ -1,3 +1,5 @@
+// Biến lưu trữ bảng xếp hạng từ bộ nhớ trình duyệt
+let leaderboardData = JSON.parse(localStorage.getItem('mathGameLeaderboard')) || [];
 const ui1 = document.getElementById('ui-1');
 const ui2 = document.getElementById('ui-2');
 const ui3 = document.getElementById('ui-3');
@@ -181,4 +183,54 @@ function gameOver() {
     ui2.style.display = 'none';
     ui3.style.display = 'flex';
     document.getElementById('final-score').innerText = currentScore;
+    
+    // Lưu điểm vào mảng
+    leaderboardData.push({ name: currentUser, score: currentScore });
+    
+    // Sắp xếp lại từ cao xuống thấp
+    leaderboardData.sort((a, b) => b.score - a.score);
+    
+    // Lưu vào bộ nhớ máy
+    localStorage.setItem('mathGameLeaderboard', JSON.stringify(leaderboardData));
+    
+    // Hiển thị ra bảng
+    renderLeaderboard();
+}
+
+// Logic nút xóa toàn bộ bảng xếp hạng
+document.getElementById('btnClearAll').addEventListener('click', () => {
+    if(confirm("CẢNH BÁO: Xóa toàn bộ dữ liệu bảng xếp hạng? Không thể khôi phục!")) {
+        leaderboardData = [];
+        localStorage.removeItem('mathGameLeaderboard');
+        renderLeaderboard();
+    }
+});
+
+// Hàm xóa 1 người chơi
+window.deletePlayer = function(index) {
+    if(confirm("Bạn muốn xóa người chơi này khỏi bảng xếp hạng?")) {
+        leaderboardData.splice(index, 1);
+        localStorage.setItem('mathGameLeaderboard', JSON.stringify(leaderboardData));
+        renderLeaderboard();
+    }
+};
+
+// Hàm hiển thị bảng xếp hạng
+function renderLeaderboard() {
+    const tbody = document.getElementById('leaderboard-body');
+    tbody.innerHTML = ""; // Xóa dữ liệu cũ
+    
+    // Chỉ lấy Top 50 người cao điểm nhất để web không bị lag
+    let displayData = leaderboardData.slice(0, 50);
+    
+    displayData.forEach((player, index) => {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>#${index + 1}</td>
+            <td>${player.name}</td>
+            <td style="color: #ffd700; font-weight: bold;">${player.score}</td>
+            <td><button class="btn-delete" onclick="deletePlayer(${index})">Xóa</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
