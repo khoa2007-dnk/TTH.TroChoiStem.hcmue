@@ -135,15 +135,25 @@ body, html {
     width: 90%; 
     height: 65%; 
     position: relative; 
-    margin-top: 10px; 
+    margin-top: 15px; 
     overflow: hidden; 
     
-    /* Làm trong suốt hoàn toàn để nhìn xuyên thấu xuống dòng sông */
-    background: transparent; 
+    /* VẼ HỒ NƯỚC ĐÈ LÊN NỀN */
+    /* Tạo dải màu nước từ xanh nhạt (trên) xuống xanh đậm (dưới) với độ trong suốt 40% */
+    background: linear-gradient(180deg, rgba(135, 206, 250, 0.3) 0%, rgba(0, 119, 190, 0.5) 100%);
     
-    /* Làm viền mờ đi để không bị thô */
-    border: 2px dashed rgba(255, 255, 255, 0.4); 
-    border-radius: 15px;
+    /* Tạo gợn sóng mờ và độ phản chiếu của nước */
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    
+    /* Bo góc tròn lớn để tạo hình dáng mặt hồ mềm mại */
+    border-radius: 40px; 
+    
+    /* Viền trắng mờ xung quanh hồ */
+    border: 3px solid rgba(255, 255, 255, 0.6); 
+    
+    /* Đổ bóng đổ ra ngoài (tạo chiều sâu) và bóng hắt vào trong (tạo độ sáng của nước) */
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3), inset 0 0 30px rgba(255, 255, 255, 0.4);
 }
 .gun { position: absolute; bottom: 0; width: 10px; height: 80px; background-color: red; transform-origin: bottom center; left: 50%; z-index: 10;}
 .game-footer { width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: bold; color: red;}
