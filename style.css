@@ -19,7 +19,16 @@ body, html {
 
 .screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; }
 
-/* UI 1: Cụm tiêu đề chính giữa */
+/* UI 1: Logo trường góc trái */
+#ui-1 .logo-img {
+    position: absolute; /* Đặt vị trí tự do */
+    top: 20px; /* Cách mép trên 20px */
+    left: 30px; /* Cách mép trái 30px */
+    width: 90px; /* Độ to của logo, bạn có thể tăng/giảm số này tùy ý */
+    height: auto; /* Giữ nguyên tỷ lệ ảnh */
+    z-index: 10;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); /* Đổ bóng nhẹ giúp logo không bị chìm vào nền */
+}
 #ui-1 .header-titles {
     text-align: center;
     margin-top: 10vh; /* Đẩy cụm chữ xuống một chút cho cân đối */
