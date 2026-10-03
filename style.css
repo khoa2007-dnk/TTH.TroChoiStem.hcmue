@@ -11,10 +11,16 @@ body, html {
     animation: gradientBG 15s ease infinite;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+body, html { 
+    margin: 0; padding: 0; width: 100%; height: 100%; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    overflow: hidden; 
+    
+    /* Chèn hình nền vịt dễ thương */
+    background-image: url('hinh-nen-vit.png');
+    background-size: cover; /* Phóng to ảnh để phủ kín toàn bộ màn hình */
+    background-position: center bottom; /* Căn ảnh ở giữa, ưu tiên hiển thị phần hồ nước bên dưới */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
 }
 
 .screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; }
