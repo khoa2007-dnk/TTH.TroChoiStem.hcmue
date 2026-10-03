@@ -48,17 +48,33 @@
     <!-- GIAO DIỆN 3: Kết thúc -->
     <div id="ui-3" class="screen" style="display: none;">
         <div class="end-container">
-            <div class="leaderboard">
-                <h3>TOP 10</h3>
-                <ul id="top10-list">
-                    <li>Tính năng Leaderboard online sẽ được cập nhật sau</li>
-                </ul>
+            <!-- Khu vực Bảng xếp hạng -->
+            <div class="leaderboard-section">
+                <h3>🏆 BẢNG XẾP HẠNG 🏆</h3>
+                <div class="table-container">
+                    <table id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Hạng</th>
+                                <th>Tên người chơi</th>
+                                <th>Điểm</th>
+                                <th>Quản lý</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Dữ liệu JS sẽ tự động đẩy vào đây -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            
+            <!-- Khu vực Điểm số & Nút bấm -->
             <div class="result-box">
-                <h3>Your Score</h3>
+                <h3>ĐIỂM CỦA BẠN</h3>
                 <h1 id="final-score">0</h1>
-                <button id="btnPlayAgain">Play Again</button>
-                <button id="btnNewGame">New Game</button>
+                <button id="btnPlayAgain">CHƠI LẠI</button>
+                <button id="btnNewGame">NGƯỜI MỚI</button>
+                <button id="btnClearAll" class="btn-danger">XÓA TẤT CẢ DỮ LIỆU</button>
             </div>
         </div>
     </div>
