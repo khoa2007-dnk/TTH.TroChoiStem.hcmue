@@ -93,9 +93,19 @@ function spawnDuck(answerText, index) {
     duck.classList.add('duck');
     duck.innerText = answerText;
     
-    let startY = Math.random() * (gameArea.clientHeight * 0.6); 
-    let startX = (index % 2 === 0) ? -80 : gameArea.clientWidth + 20; 
+    // 1. FIX ĐÈ NHAU CHIỀU DỌC: Chia màn hình làm 4 "làn đường bay" riêng biệt cho 4 con vịt
+    let laneHeight = gameArea.clientHeight / 4;
+    let startY = (index * laneHeight) + (Math.random() * 20); 
+    
+    // 2. FIX ĐÈ NHAU CHIỀU NGANG: Cộng thêm khoảng lùi ngẫu nhiên để vịt bay ra so le nhau
+    let randomDelayX = Math.random() * 150; 
+    let startX = (index % 2 === 0) ? -80 - randomDelayX : gameArea.clientWidth + 20 + randomDelayX; 
     let direction = (index % 2 === 0) ? 1 : -1; 
+    
+    // 3. FIX ĐẢO CHIỀU: Gắn nhãn cho vịt bay từ phải sang trái
+    if (direction === -1) {
+        duck.classList.add('fly-left');
+    }
     
     duck.style.top = startY + 'px';
     duck.style.left = startX + 'px';
