@@ -46,11 +46,10 @@ body, html {
 /* Tên Trường: Đổi font, in đậm, màu đỏ */
 #ui-1 .uni-name {
     font-family: 'Times New Roman', Times, serif; 
-    font-size: 26px; 
+    font-size: 40px; 
     font-weight: 900; 
-    color: #ff3333; 
+    color:  #0000FF; 
     margin: 5px 0;
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(0,0,0,0.8); 
 }
 
 #ui-1 .faculty-name {
