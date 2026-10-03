@@ -19,34 +19,41 @@ body, html {
 
 .screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; }
 
-/* UI 1: Logo trường góc trái */
-#ui-1 .logo-img {
-    position: absolute; /* Đặt vị trí tự do */
-    top: 20px; /* Cách mép trên 20px */
-    left: 30px; /* Cách mép trái 30px */
-    width: 90px; /* Độ to của logo, bạn có thể tăng/giảm số này tùy ý */
-    height: auto; /* Giữ nguyên tỷ lệ ảnh */
-    z-index: 10;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); /* Đổ bóng nhẹ giúp logo không bị chìm vào nền */
-}
+/* UI 1: Cụm tiêu đề chính giữa */
 #ui-1 .header-titles {
     text-align: center;
-    margin-top: 10vh; /* Đẩy cụm chữ xuống một chút cho cân đối */
-    color: #ffffff; /* Chữ màu trắng để nổi bật trên hình nền */
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Đổ bóng đen giúp chữ dễ đọc trên mọi nền */
+    margin-top: 5vh; /* Kéo cả cụm nhích lên trên một chút để chừa chỗ cho logo */
+    color: #ffffff; 
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7); 
     letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Đảm bảo logo và chữ căn giữa hoàn hảo một trục dọc */
 }
 
+/* Logo trường được đưa vào giữa và phóng to */
+#ui-1 .logo-img {
+    width: 150px; /* Phóng to logo lên 150px (từ 90px cũ). Bạn có thể chỉnh số này tùy ý */
+    height: auto;
+    margin-bottom: 15px; /* Tạo khoảng trống 15px với dòng chữ bên dưới */
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5)); 
+}
+
+/* Tên Trường: Đổi font, in đậm, màu đỏ */
 #ui-1 .uni-name {
-    font-size: 22px;
-    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif; /* Chuyển sang font có chân trang trọng */
+    font-size: 26px; /* Tăng cỡ chữ lên một chút cho cân đối với logo */
+    font-weight: 900; /* In đậm tối đa */
+    color: #ff3333; /* Đổ màu đỏ sáng */
     margin: 5px 0;
+    /* Thêm một lớp viền sáng mờ phía sau để màu đỏ không bị chìm vào nền xanh đậm */
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(0,0,0,0.8); 
 }
 
 #ui-1 .faculty-name {
     font-size: 42px;
     font-weight: 900;
-    color: #ffd700; /* Nhấn mạnh tên khoa bằng màu vàng sặc sỡ */
+    color: #ffd700; 
     margin: 10px 0;
     text-transform: uppercase;
 }
@@ -55,49 +62,6 @@ body, html {
     font-size: 28px;
     font-weight: bold;
     margin: 5px 0;
-}
-
-/* Hiệu ứng Kính mờ (Glassmorphism) cho hộp đăng nhập */
-#ui-1 .login-box { 
-    margin-top: 6vh; text-align: center; 
-    padding: 40px 60px; 
-    border-radius: 20px; 
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px); 
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    display: flex; flex-direction: column; align-items: center;
-}
-
-/* Ô nhập tên bo tròn, phát sáng khi bấm */
-#ui-1 input { 
-    padding: 15px 20px; font-size: 18px; margin-bottom: 25px; 
-    text-align: center; border: none; width: 280px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-    outline: none; transition: 0.3s;
-}
-
-#ui-1 input:focus {
-    box-shadow: 0 0 15px rgba(255,255,255,0.8);
-    transform: scale(1.02);
-}
-
-/* Nút Play đổi màu sặc sỡ */
-#ui-1 button { 
-    padding: 15px 50px; font-size: 20px; font-weight: bold; 
-    cursor: pointer; border-radius: 30px; border: none;
-    background: linear-gradient(90deg, #ff8a00, #e52e71);
-    color: white; letter-spacing: 2px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
-}
-
-#ui-1 button:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(229, 46, 113, 0.6);
 }
 
 /* UI 2 */
