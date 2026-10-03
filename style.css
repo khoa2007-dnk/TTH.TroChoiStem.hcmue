@@ -136,8 +136,35 @@ body, html {
 .game-footer { width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: bold; color: red;}
 
 /* Vịt / Gà mang đáp án */
-.duck { position: absolute; width: 60px; height: 60px; background-color: #ffd700; border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; cursor: crosshair; user-select: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-
+.duck { 
+    position: absolute; 
+    width: 80px;  /* Tăng kích thước lên một chút cho rõ con vịt */
+    height: 80px; 
+    
+    /* Xóa cái nền vàng và viền tròn cũ đi */
+    background-color: transparent; 
+    border: none; 
+    border-radius: 0; 
+    box-shadow: none;
+    
+    /* Chèn ảnh con vịt vào làm nền */
+    background-image: url('con-vit.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Căn chỉnh con số (đáp án) nằm ngay giữa bụng vịt */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: 900; 
+    font-size: 22px; 
+    color: #ff0000; /* Cho chữ màu đỏ để nổi bật */
+    text-shadow: 2px 2px 4px #ffffff, -1px -1px 4px #ffffff; /* Viền bóng trắng quanh số giúp dễ đọc hơn */
+    
+    cursor: crosshair; 
+    user-select: none; 
+}
 /* UI 3 */
 .end-container { display: flex; width: 80%; height: 60%; margin-top: 15vh; border: 2px solid #333; background: white; border-radius: 10px;}
 .leaderboard { width: 50%; padding: 20px; border-right: 2px solid #333; color: red; }
