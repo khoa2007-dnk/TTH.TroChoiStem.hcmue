@@ -155,46 +155,26 @@ body, html {
     /* Đổ bóng đổ ra ngoài (tạo chiều sâu) và bóng hắt vào trong (tạo độ sáng của nước) */
     box-shadow: 0 15px 25px rgba(0,0,0,0.3), inset 0 0 30px rgba(255, 255, 255, 0.4);
 }
-/* Hình khẩu đại bác (Phong cách Game Bắn Cá) */
+/* Hình khẩu đại bác bự (Chuẩn Game Bắn Cá) */
 .gun { 
     position: absolute; 
     bottom: 0; 
-    width: 80px;  /* Tăng độ bự cho hầm hố đúng chất đại bác */
-    height: 120px; 
-    left: calc(50% - 40px); /* Căn giữa lại theo chiều rộng mới */
+    width: 80px;  /* Giữ độ bự hầm hố */
+    height: 130px; 
+    left: calc(50% - 40px);
     
     background-color: transparent; 
     
-    /* Mã code vẽ khẩu đại bác vàng kim */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'><path d='M 15 150 L 85 150 C 85 120 75 110 50 110 C 25 110 15 120 15 150 Z' fill='%232c3e50' /><path d='M 35 40 L 65 40 L 60 115 L 40 115 Z' fill='%23f1c40f' /><rect x='32' y='70' width='36' height='10' rx='3' fill='%23d35400' /><rect x='34' y='95' width='32' height='8' rx='3' fill='%23d35400' /><rect x='28' y='25' width='44' height='15' rx='4' fill='%23e67e22' /><path d='M 35 25 L 65 25 L 65 15 L 35 15 Z' fill='%232c3e50' /><circle cx='50' cy='125' r='14' fill='%23bdc3c7' /><circle cx='50' cy='125' r='6' fill='%23e74c3c' /></svg>");
+    /* Đã vẽ lại một nòng to duy nhất, miệng loe rộng, có trục xoay rõ ràng */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'><!-- Đế súng --><path d='M 10 150 L 90 150 L 80 120 C 80 100 20 100 20 120 Z' fill='%231a252f'/><!-- Thân nòng súng chính --><path d='M 32 120 L 68 120 L 62 40 L 38 40 Z' fill='%23f1c40f'/><!-- Các vòng đai trang trí trên nòng --><rect x='34' y='90' width='32' height='8' fill='%23d35400'/><rect x='36' y='65' width='28' height='8' fill='%23d35400'/><!-- Miệng nòng súng loe rộng --><path d='M 32 40 L 68 40 L 75 15 L 25 15 Z' fill='%23e67e22'/><!-- Viền thép và lõi đỏ ở đầu nòng --><rect x='20' y='5' width='60' height='10' rx='4' fill='%232c3e50'/><rect x='30' y='0' width='40' height='5' fill='%23e74c3c'/><!-- Trục xoay cơ học đè lên trên thân súng --><circle cx='50' cy='125' r='20' fill='%237f8c8d'/><circle cx='50' cy='125' r='10' fill='%23f39c12'/></svg>");
     
     background-size: contain;
     background-position: center bottom;
     background-repeat: no-repeat;
     
-    /* Dời tâm xoay vào đúng khớp tròn cơ học của bệ đỡ */
-    transform-origin: 50% 85%; 
+    /* Tâm xoay đặt đúng vào vòng tròn cơ học của bệ đỡ */
+    transform-origin: 50% 88%; 
     z-index: 10;
-}
-
-/* TIA LASER NGẮM BẮN (Đổi sang màu vàng ánh kim) */
-.gun::after {
-    content: '';
-    position: absolute;
-    bottom: 110px; /* Bắt đầu phát ra từ miệng nòng đại bác */
-    left: 50%;
-    transform: translateX(-50%);
-    
-    width: 3px; /* Làm tia laser dày lên một chút */
-    height: 1500px; 
-    
-    /* Tia laser đứt nét màu vàng */
-    background-image: linear-gradient(to top, rgba(255, 215, 0, 0.9) 50%, transparent 50%);
-    background-size: 100% 25px; 
-    
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.8;
 }
 .game-footer { width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: bold; color: red;}
 
