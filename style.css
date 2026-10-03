@@ -37,7 +37,7 @@ body, html {
 
 /* Logo trường */
 #ui-1 .logo-img {
-    width: 200px; 
+    width: 400px; 
     height: auto;
     margin-bottom: 15px; 
     filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5)); 
