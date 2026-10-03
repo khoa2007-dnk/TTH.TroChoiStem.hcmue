@@ -205,15 +205,15 @@ body, html {
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    
-    /* Đẩy chữ xuống phần bụng vịt */
     padding-top: 30px; 
     box-sizing: border-box; 
     
-    font-weight: 900; 
-    font-size: 22px; 
-    color: #ff0000; 
-    text-shadow: 2px 2px 4px #ffffff, -1px -1px 4px #ffffff, 0px 0px 10px #ffffff; 
+    /* Chỉnh chữ đơn giản, rõ nét, không đổ bóng */
+    font-weight: bold; 
+    font-size: 20px; 
+    color: #cc0000; /* Màu đỏ đậm dễ nhìn trên nền vàng */
+    text-shadow: none; /* Xóa đổ bóng */
+    
     cursor: crosshair; 
     user-select: none; 
     z-index: 5;
