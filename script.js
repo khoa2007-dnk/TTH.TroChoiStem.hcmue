@@ -18,14 +18,14 @@ let ducks = [];
 let gameInterval;
 let duckSpeed = 2.5; 
 
-// Ngân hàng câu hỏi Toán học (Sử dụng chuẩn LaTeX)
+// Ngân hàng câu hỏi Toán học (Đã thêm khoảng trắng &nbsp; và ký hiệu LaTeX cho đáp án)
 const questions = [
-    { q: "Đạo hàm của \\( x^2 \\)", correct: "2x", wrongs: ["x", "2", "x^2"] },
-    { q: "Giá trị của \\( \\cos(0) \\)", correct: "1", wrongs: ["0", "-1", "π"] },
-    { q: "Tính \\( \\sqrt{25} \\)", correct: "5", wrongs: ["-5", "10", "25"] },
-    { q: "Tích phân của \\( 2x \\)", correct: "x^2", wrongs: ["2x^2", "x", "2"] },
-    { q: "Tính giới hạn \\( \\lim_{x \\to 0} \\frac{\\sin x}{x} \\)", correct: "1", wrongs: ["0", "∞", "-1"] },
-    { q: "Nghiệm của \\( 2^x = 8 \\) là gì?", correct: "3", wrongs: ["2", "4", "8"] }
+    { q: "Đạo hàm của &nbsp; \\( x^2 \\)", correct: "2x", wrongs: ["x", "2", "x^2"] },
+    { q: "Giá trị của &nbsp; \\( \\cos(0) \\)", correct: "1", wrongs: ["0", "-1", "\\pi"] },
+    { q: "Tính &nbsp; \\( \\sqrt{25} \\)", correct: "5", wrongs: ["-5", "10", "25"] },
+    { q: "Tích phân của &nbsp; \\( 2x \\)", correct: "x^2", wrongs: ["2x^2", "x", "2"] },
+    { q: "Tính giới hạn &nbsp; \\( \\lim_{x \\to 0} \\frac{\\sin x}{x} \\)", correct: "1", wrongs: ["0", "\\infty", "-1"] },
+    { q: "Nghiệm của &nbsp; \\( 2^x = 8 \\)", correct: "3", wrongs: ["2", "4", "8"] }
 ];
 let currentQuestion = {};
 
@@ -99,18 +99,16 @@ function nextTurn() {
 function spawnDuck(answerText, index) {
     let duck = document.createElement('div');
     duck.classList.add('duck');
-    duck.innerText = answerText;
     
-    // 1. FIX ĐÈ NHAU CHIỀU DỌC: Chia màn hình làm 4 "làn đường bay" riêng biệt cho 4 con vịt
+    // Bọc đáp án bằng thẻ LaTeX để nhận diện công thức
+    duck.innerHTML = `\\( ${answerText} \\)`;
+    
     let laneHeight = gameArea.clientHeight / 4;
     let startY = (index * laneHeight) + (Math.random() * 20); 
-    
-    // 2. FIX ĐÈ NHAU CHIỀU NGANG: Cộng thêm khoảng lùi ngẫu nhiên để vịt bay ra so le nhau
     let randomDelayX = Math.random() * 150; 
     let startX = (index % 2 === 0) ? -80 - randomDelayX : gameArea.clientWidth + 20 + randomDelayX; 
     let direction = (index % 2 === 0) ? 1 : -1; 
     
-    // 3. FIX ĐẢO CHIỀU: Gắn nhãn cho vịt bay từ phải sang trái
     if (direction === -1) {
         duck.classList.add('fly-left');
     }
@@ -126,6 +124,11 @@ function spawnDuck(answerText, index) {
     
     gameArea.appendChild(duck);
     ducks.push(duck);
+
+    // Yêu cầu thư viện MathJax vẽ công thức lên bụng con vịt
+    if (window.MathJax) {
+        MathJax.typesetPromise([duck]);
+    }
 }
 
 function moveDucks() {
