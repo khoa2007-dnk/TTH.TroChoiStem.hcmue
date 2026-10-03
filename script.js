@@ -18,14 +18,14 @@ let ducks = [];
 let gameInterval;
 let duckSpeed = 2.5; 
 
-// Ngân hàng câu hỏi
+// Ngân hàng câu hỏi Toán học (Sử dụng chuẩn LaTeX)
 const questions = [
-    { q: "Đạo hàm của x^2", correct: "2x", wrongs: ["x", "2", "x^2"] },
-    { q: "Giá trị của cos(0)", correct: "1", wrongs: ["0", "-1", "π"] },
-    { q: "Căn bậc 2 của 25", correct: "5", wrongs: ["-5", "10", "25"] },
-    { q: "Tích phân của 2x", correct: "x^2", wrongs: ["2x^2", "x", "2"] },
-    { q: "7 x 8 = ?", correct: "56", wrongs: ["54", "48", "64"] },
-    { q: "lim(x->0) sin(x)/x", correct: "1", wrongs: ["0", "∞", "-1"] }
+    { q: "Đạo hàm của \\( x^2 \\)", correct: "2x", wrongs: ["x", "2", "x^2"] },
+    { q: "Giá trị của \\( \\cos(0) \\)", correct: "1", wrongs: ["0", "-1", "π"] },
+    { q: "Tính \\( \\sqrt{25} \\)", correct: "5", wrongs: ["-5", "10", "25"] },
+    { q: "Tích phân của \\( 2x \\)", correct: "x^2", wrongs: ["2x^2", "x", "2"] },
+    { q: "Tính giới hạn \\( \\lim_{x \\to 0} \\frac{\\sin x}{x} \\)", correct: "1", wrongs: ["0", "∞", "-1"] },
+    { q: "Nghiệm của \\( 2^x = 8 \\) là gì?", correct: "3", wrongs: ["2", "4", "8"] }
 ];
 let currentQuestion = {};
 
@@ -77,7 +77,13 @@ function nextTurn() {
     ducks = [];
     
     currentQuestion = questions[Math.floor(Math.random() * questions.length)];
-    questionBox.innerText = `Câu hỏi: ${currentQuestion.q}`;
+    // Dùng innerHTML thay vì innerText để web hiểu mã HTML/LaTeX
+    questionBox.innerHTML = `Câu hỏi: ${currentQuestion.q}`;
+    
+    // Yêu cầu thư viện MathJax vẽ lại công thức toán học
+    if (window.MathJax) {
+        MathJax.typesetPromise([questionBox]);
+    }
     
     let answers = [currentQuestion.correct, ...currentQuestion.wrongs];
     answers.sort(() => Math.random() - 0.5);
