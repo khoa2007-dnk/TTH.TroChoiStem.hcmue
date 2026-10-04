@@ -1,5 +1,17 @@
-// Biến lưu trữ bảng xếp hạng từ bộ nhớ trình duyệt
-let leaderboardData = JSON.parse(localStorage.getItem('mathGameLeaderboard')) || [];
+const firebaseConfig = {
+    apiKey: "AIzaSyBlFV6WEnbqAz6nt-xLFDw-2KfKXH_E0zo",
+    authDomain: "tthtrochoistem.firebaseapp.com",
+    databaseURL: "https://tthtrochoistem-default-rtdb.firebaseio.com",
+    projectId: "tthtrochoistem",
+    storageBucket: "tthtrochoistem.firebasestorage.app",
+    messagingSenderId: "801801522309",
+    appId: "1:801801522309:web:919bfb9187af9e2cea2dec",
+    measurementId: "G-F6NMF0ZCR4"
+};
+// Khởi tạo kết nối máy chủ
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 const ui1 = document.getElementById('ui-1');
 const ui2 = document.getElementById('ui-2');
 const ui3 = document.getElementById('ui-3');
@@ -18,13 +30,13 @@ let ducks = [];
 let gameInterval;
 let duckSpeed = 2.5; 
 
-// Ngân hàng câu hỏi Toán học (Đã thêm khoảng trắng &nbsp; và ký hiệu LaTeX cho đáp án)
+// Ngân hàng câu hỏi Toán học
 const questions = [
     { q: "Đạo hàm của &nbsp; \\( x^2 \\)", correct: "2x", wrongs: ["x", "2", "x^2"] },
-    { q: "Giá trị của &nbsp; \\( \\cos(0) \\)", correct: "1", wrongs: ["0", "-1", "\\pi"] },
-    { q: "Tính &nbsp; \\( \\sqrt{25} \\)", correct: "5", wrongs: ["-5", "10", "25"] },
+    { q: "Giá trị của &nbsp; \\(\\cos(0) \\)", correct: "1", wrongs: ["0", "-1", "\\pi"] },
+    { q: "Tính &nbsp; \\(\\sqrt{25} \\)", correct: "5", wrongs: ["-5", "10", "25"] },
     { q: "Tích phân của &nbsp; \\( 2x \\)", correct: "x^2", wrongs: ["2x^2", "x", "2"] },
-    { q: "Tính giới hạn &nbsp; \\( \\lim_{x \\to 0} \\frac{\\sin x}{x} \\)", correct: "1", wrongs: ["0", "\\infty", "-1"] },
+    { q: "Tính giới hạn &nbsp; \\(\\lim_{x \\to 0} \\frac{\\sin x}{x} \\)", correct: "1", wrongs: ["0", "\\infty", "-1"] },
     { q: "Nghiệm của &nbsp; \\( 2^x = 8 \\)", correct: "3", wrongs: ["2", "4", "8"] }
 ];
 let currentQuestion = {};
@@ -77,10 +89,8 @@ function nextTurn() {
     ducks = [];
     
     currentQuestion = questions[Math.floor(Math.random() * questions.length)];
-    // Dùng innerHTML thay vì innerText để web hiểu mã HTML/LaTeX
     questionBox.innerHTML = `Câu hỏi: ${currentQuestion.q}`;
     
-    // Yêu cầu thư viện MathJax vẽ lại công thức toán học
     if (window.MathJax) {
         MathJax.typesetPromise([questionBox]);
     }
@@ -100,7 +110,6 @@ function spawnDuck(answerText, index) {
     let duck = document.createElement('div');
     duck.classList.add('duck');
     
-    // Bọc đáp án bằng thẻ LaTeX để nhận diện công thức
     duck.innerHTML = `\\( ${answerText} \\)`;
     
     let laneHeight = gameArea.clientHeight / 4;
@@ -125,7 +134,6 @@ function spawnDuck(answerText, index) {
     gameArea.appendChild(duck);
     ducks.push(duck);
 
-    // Yêu cầu thư viện MathJax vẽ công thức lên bụng con vịt
     if (window.MathJax) {
         MathJax.typesetPromise([duck]);
     }
@@ -188,58 +196,60 @@ function updateHealthUI() {
     document.getElementById('health').innerText = healthStr === "" ? "💀" : healthStr;
 }
 
+// ==========================================
+// KHU VỰC KẾT NỐI MÁY CHỦ FIREBASE (ONLINE)
+// ==========================================
+
+// Đẩy điểm lên máy chủ đám mây khi thua
 function gameOver() {
     ui2.style.display = 'none';
     ui3.style.display = 'flex';
     document.getElementById('final-score').innerText = currentScore;
     
-    // Lưu điểm vào mảng
-    leaderboardData.push({ name: currentUser, score: currentScore });
-    
-    // Sắp xếp lại từ cao xuống thấp
-    leaderboardData.sort((a, b) => b.score - a.score);
-    
-    // Lưu vào bộ nhớ máy
-    localStorage.setItem('mathGameLeaderboard', JSON.stringify(leaderboardData));
-    
-    // Hiển thị ra bảng
-    renderLeaderboard();
+    db.ref('leaderboard').push({
+        name: currentUser,
+        score: currentScore,
+        timestamp: Date.now()
+    });
 }
 
-// Logic nút xóa toàn bộ bảng xếp hạng
-document.getElementById('btnClearAll').addEventListener('click', () => {
-    if(confirm("CẢNH BÁO: Xóa toàn bộ dữ liệu bảng xếp hạng? Không thể khôi phục!")) {
-        leaderboardData = [];
-        localStorage.removeItem('mathGameLeaderboard');
-        renderLeaderboard();
-    }
-});
-
-// Hàm xóa 1 người chơi
-window.deletePlayer = function(index) {
-    if(confirm("Bạn muốn xóa người chơi này khỏi bảng xếp hạng?")) {
-        leaderboardData.splice(index, 1);
-        localStorage.setItem('mathGameLeaderboard', JSON.stringify(leaderboardData));
-        renderLeaderboard();
-    }
-};
-
-// Hàm hiển thị bảng xếp hạng
-function renderLeaderboard() {
+// Lắng nghe dữ liệu Realtime và tự động cập nhật Bảng xếp hạng
+db.ref('leaderboard').on('value', (snapshot) => {
     const tbody = document.getElementById('leaderboard-body');
-    tbody.innerHTML = ""; // Xóa dữ liệu cũ
+    tbody.innerHTML = ""; 
     
-    // Chỉ lấy Top 50 người cao điểm nhất để web không bị lag
-    let displayData = leaderboardData.slice(0, 50);
+    let dataList = [];
+    snapshot.forEach((childSnapshot) => {
+        dataList.push({
+            id: childSnapshot.key, 
+            ...childSnapshot.val()
+        });
+    });
     
-    displayData.forEach((player, index) => {
+    dataList.sort((a, b) => b.score - a.score);
+    
+    dataList.slice(0, 50).forEach((player, index) => {
         let tr = document.createElement('tr');
         tr.innerHTML = `
             <td>#${index + 1}</td>
             <td>${player.name}</td>
             <td style="color: #ffd700; font-weight: bold;">${player.score}</td>
-            <td><button class="btn-delete" onclick="deletePlayer(${index})">Xóa</button></td>
+            <td><button class="btn-delete" onclick="deletePlayer('${player.id}')">Xóa</button></td>
         `;
         tbody.appendChild(tr);
     });
-}
+});
+
+// Nút Xóa 1 người chơi khỏi máy chủ
+window.deletePlayer = function(id) {
+    if(confirm("Bạn muốn xóa người chơi này khỏi máy chủ?")) {
+        db.ref('leaderboard/' + id).remove();
+    }
+};
+
+// Nút Xóa tất cả dữ liệu máy chủ
+document.getElementById('btnClearAll').addEventListener('click', () => {
+    if(confirm("CẢNH BÁO: Xóa toàn bộ dữ liệu trên máy chủ? Hành động này không thể hoàn tác!")) {
+        db.ref('leaderboard').remove();
+    }
+});
