@@ -155,26 +155,45 @@ body, html {
     /* Đổ bóng đổ ra ngoài (tạo chiều sâu) và bóng hắt vào trong (tạo độ sáng của nước) */
     box-shadow: 0 15px 25px rgba(0,0,0,0.3), inset 0 0 30px rgba(255, 255, 255, 0.4);
 }
-/* Hình khẩu đại bác bự (Chuẩn Game Bắn Cá) */
+/* Hình thân súng vàng & đế (Đã cắt bỏ phần nòng loe và phóng to) */
 .gun { 
     position: absolute; 
     bottom: 0; 
-    width: 80px;  /* Giữ độ bự hầm hố */
-    height: 130px; 
-    left: calc(50% - 40px);
+    width: 110px;  /* Phóng to bề ngang */
+    height: 170px; /* Phóng to chiều cao */
+    left: calc(50% - 55px); /* Căn giữa lại theo kích thước mới */
     
     background-color: transparent; 
     
-    /* Đã vẽ lại một nòng to duy nhất, miệng loe rộng, có trục xoay rõ ràng */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'><!-- Đế súng --><path d='M 10 150 L 90 150 L 80 120 C 80 100 20 100 20 120 Z' fill='%231a252f'/><!-- Thân nòng súng chính --><path d='M 32 120 L 68 120 L 62 40 L 38 40 Z' fill='%23f1c40f'/><!-- Các vòng đai trang trí trên nòng --><rect x='34' y='90' width='32' height='8' fill='%23d35400'/><rect x='36' y='65' width='28' height='8' fill='%23d35400'/><!-- Miệng nòng súng loe rộng --><path d='M 32 40 L 68 40 L 75 15 L 25 15 Z' fill='%23e67e22'/><!-- Viền thép và lõi đỏ ở đầu nòng --><rect x='20' y='5' width='60' height='10' rx='4' fill='%232c3e50'/><rect x='30' y='0' width='40' height='5' fill='%23e74c3c'/><!-- Trục xoay cơ học đè lên trên thân súng --><circle cx='50' cy='125' r='20' fill='%237f8c8d'/><circle cx='50' cy='125' r='10' fill='%23f39c12'/></svg>");
+    /* Bản vẽ SVG mới: Chỉ giữ đế xám, thân vàng vát nhọn và trục xoay */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'><!-- Đế súng --><path d='M 10 150 L 90 150 L 80 120 C 80 100 20 100 20 120 Z' fill='%231a252f'/><!-- Thân súng màu vàng vươn dài --><path d='M 32 120 L 68 120 L 58 10 L 42 10 Z' fill='%23f1c40f'/><!-- Các vòng đai màu cam --><rect x='34' y='80' width='32' height='10' fill='%23d35400'/><rect x='38' y='40' width='24' height='10' fill='%23d35400'/><!-- Trục xoay cơ học --><circle cx='50' cy='125' r='20' fill='%237f8c8d'/><circle cx='50' cy='125' r='10' fill='%23f39c12'/></svg>");
     
     background-size: contain;
     background-position: center bottom;
     background-repeat: no-repeat;
     
-    /* Tâm xoay đặt đúng vào vòng tròn cơ học của bệ đỡ */
+    /* Tâm xoay vẫn giữ tại trục cơ học */
     transform-origin: 50% 88%; 
     z-index: 10;
+}
+
+/* Đẩy tia laser lên khớp với đỉnh thân súng mới */
+.gun::after {
+    content: '';
+    position: absolute;
+    bottom: 92%; /* Bắt đầu phát ra từ ngay đỉnh thân súng vàng */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 3px; 
+    height: 1500px; 
+    
+    background-image: linear-gradient(to top, rgba(255, 215, 0, 0.9) 50%, transparent 50%);
+    background-size: 100% 25px; 
+    
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.8;
 }
 .game-footer { width: 90%; height: 10%; display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: bold; color: red;}
 
