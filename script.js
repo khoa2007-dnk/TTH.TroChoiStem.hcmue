@@ -30,14 +30,13 @@ let ducks = [];
 let gameInterval;
 let duckSpeed = 2.5; 
 
-// Ngân hàng câu hỏi Toán học
+// Ngân hàng câu hỏi Toán học (Trích từ đề thi TLCĐS và bổ sung đủ 6 đáp án)
 const questions = [
-    { q: "Đạo hàm của &nbsp; \\( x^2 \\)", correct: "2x", wrongs: ["x", "2", "x^2"] },
-    { q: "Giá trị của &nbsp; \\(\\cos(0) \\)", correct: "1", wrongs: ["0", "-1", "\\pi"] },
-    { q: "Tính &nbsp; \\(\\sqrt{25} \\)", correct: "5", wrongs: ["-5", "10", "25"] },
-    { q: "Tích phân của &nbsp; \\( 2x \\)", correct: "x^2", wrongs: ["2x^2", "x", "2"] },
-    { q: "Tính giới hạn &nbsp; \\(\\lim_{x \\to 0} \\frac{\\sin x}{x} \\)", correct: "1", wrongs: ["0", "\\infty", "-1"] },
-    { q: "Nghiệm của &nbsp; \\( 2^x = 8 \\)", correct: "3", wrongs: ["2", "4", "8"] }
+    { q: "Rút gọn biểu thức &nbsp; \\( M = \\sqrt{x^2} \\)", correct: "|x|", wrongs: ["x", "-x", "\\pm x", "x^2", "0"] },
+    { q: "Đạo hàm của hàm số &nbsp; \\( y = e^{\\pi} \\)", correct: "0", wrongs: ["e^{\\pi}", "\\pi e^{\\pi-1}", "e^{\\pi} \\ln \\pi", "1", "\\pi"] },
+    { q: "Giới hạn &nbsp; \\( \\lim_{x \\to 0} \\frac{\\sin 2x}{x} \\)", correct: "2", wrongs: ["1", "\\frac{1}{2}", "0", "\\infty", "-1"] },
+    { q: "Tính đạo hàm của &nbsp; \\( y=\\pi^{\\pi} \\) tại \\( x=1 \\)", correct: "0", wrongs: ["3", "1", "4", "\\pi", "\\pi^{\\pi}"] },
+    { q: "Kết quả của &nbsp; \\( \\lim_{n\\to+\\infty}\\frac{4n^2-1}{-n^2+2} \\)", correct: "-4", wrongs: ["2", "0", "-8", "4", "\\infty"] }
 ];
 let currentQuestion = {};
 
@@ -95,11 +94,19 @@ function nextTurn() {
         MathJax.typesetPromise([questionBox]);
     }
     
-    let answers = [currentQuestion.correct, ...currentQuestion.wrongs];
+    // Lấy 1 đáp án đúng và 5 đáp án sai (tổng cộng 6)
+    let answers = [currentQuestion.correct, ...currentQuestion.wrongs.slice(0, 5)];
     answers.sort(() => Math.random() - 0.5);
     
-    for(let i = 0; i < 4; i++) {
-        spawnDuck(answers[i], i);
+    // Phát lệnh xuất hiện vịt ngẫu nhiên về thời gian
+    for(let i = 0; i < 6; i++) { 
+        let randomDelay = Math.random() * 2500; // Vịt sẽ xuất hiện ngẫu nhiên trong khoảng 0 đến 2.5 giây
+        setTimeout(() => {
+            // Chỉ sinh vịt nếu máu > 0 (tránh lỗi khi người chơi đã thua mà vịt vẫn ra)
+            if(health > 0) {
+                spawnDuck(answers[i], i);
+            }
+        }, randomDelay);
     }
     
     clearInterval(gameInterval);
@@ -112,10 +119,12 @@ function spawnDuck(answerText, index) {
     
     duck.innerHTML = `\\( ${answerText} \\)`;
     
-    let laneHeight = gameArea.clientHeight / 4;
-    let startY = (index * laneHeight) + (Math.random() * 20); 
-    let randomDelayX = Math.random() * 150; 
-    let startX = (index % 2 === 0) ? -80 - randomDelayX : gameArea.clientWidth + 20 + randomDelayX; 
+    // Chia màn hình làm 6 làn đường cho 6 con vịt
+    let laneHeight = gameArea.clientHeight / 6; 
+    let startY = (index * laneHeight) + (Math.random() * 10); 
+    
+    // Vì vịt đã ra ngẫu nhiên về thời gian, ta không cần delay tọa độ X nữa
+    let startX = (index % 2 === 0) ? -100 : gameArea.clientWidth + 50; 
     let direction = (index % 2 === 0) ? 1 : -1; 
     
     if (direction === -1) {
