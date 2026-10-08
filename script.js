@@ -180,9 +180,11 @@ function spawnDuck(answerText, index) {
     
     duck.innerHTML = `\\( ${answerText} \\)`;
     
-    // CĂN CHỈNH CHIỀU DỌC (Tránh đè nhau)
-    let laneHeight = gameArea.clientHeight / 6; 
-    let startY = (index * laneHeight) + 10; // Cộng 10px để vịt không cạ vào mép trên
+    // CĂN CHỈNH CHIỀU DỌC (Tránh đè nhau và chừa chỗ cho súng)
+    // Trừ đi 130px ở đáy màn hình để không gian bơi của vịt không đụng trúng khẩu súng
+    let usableHeight = gameArea.clientHeight - 130; 
+    let laneHeight = usableHeight / 6; 
+    let startY = (index * laneHeight) + 10;
     
     // CĂN CHỈNH CHIỀU NGANG (Tạo thành từng đợt bơi ngẫu nhiên)
     // Con thứ 1 cách lề 0px, con 2 cách 250px, con 3 cách 500px... cộng thêm độ chênh lệch ngẫu nhiên
