@@ -84,9 +84,11 @@ function nextTurn() {
         return;
     }
     
+    // Xóa vịt cũ
     gameArea.querySelectorAll('.duck').forEach(d => d.remove());
     ducks = [];
     
+    // Bốc câu hỏi mới
     currentQuestion = questions[Math.floor(Math.random() * questions.length)];
     questionBox.innerHTML = `Câu hỏi: ${currentQuestion.q}`;
     
@@ -94,19 +96,13 @@ function nextTurn() {
         MathJax.typesetPromise([questionBox]);
     }
     
-    // Lấy 1 đáp án đúng và 5 đáp án sai (tổng cộng 6)
+    // Lấy 1 đáp án đúng và 5 đáp án sai
     let answers = [currentQuestion.correct, ...currentQuestion.wrongs.slice(0, 5)];
     answers.sort(() => Math.random() - 0.5);
     
-    // Phát lệnh xuất hiện vịt ngẫu nhiên về thời gian
+    // Sinh toàn bộ 6 con vịt ngay lập tức (KHÔNG dùng setTimeout để tránh lỗi tua game)
     for(let i = 0; i < 6; i++) { 
-        let randomDelay = Math.random() * 2500; // Vịt sẽ xuất hiện ngẫu nhiên trong khoảng 0 đến 2.5 giây
-        setTimeout(() => {
-            // Chỉ sinh vịt nếu máu > 0 (tránh lỗi khi người chơi đã thua mà vịt vẫn ra)
-            if(health > 0) {
-                spawnDuck(answers[i], i);
-            }
-        }, randomDelay);
+        spawnDuck(answers[i], i);
     }
     
     clearInterval(gameInterval);
@@ -119,13 +115,18 @@ function spawnDuck(answerText, index) {
     
     duck.innerHTML = `\\( ${answerText} \\)`;
     
-    // Chia màn hình làm 6 làn đường cho 6 con vịt
+    // CĂN CHỈNH CHIỀU DỌC (Tránh đè nhau)
     let laneHeight = gameArea.clientHeight / 6; 
-    let startY = (index * laneHeight) + (Math.random() * 10); 
+    let startY = (index * laneHeight) + 10; // Cộng 10px để vịt không cạ vào mép trên
     
-    // Vì vịt đã ra ngẫu nhiên về thời gian, ta không cần delay tọa độ X nữa
-    let startX = (index % 2 === 0) ? -100 : gameArea.clientWidth + 50; 
+    // CĂN CHỈNH CHIỀU NGANG (Tạo thành từng đợt bơi ngẫu nhiên)
+    // Con thứ 1 cách lề 0px, con 2 cách 250px, con 3 cách 500px... cộng thêm độ chênh lệch ngẫu nhiên
+    let delaySpacing = (Math.floor(index / 2) * 250) + (Math.random() * 150); 
+    
     let direction = (index % 2 === 0) ? 1 : -1; 
+    
+    // Đẩy vịt ra tít ngoài màn hình dựa trên khoảng cách delaySpacing
+    let startX = (direction === 1) ? -100 - delaySpacing : gameArea.clientWidth + 50 + delaySpacing; 
     
     if (direction === -1) {
         duck.classList.add('fly-left');
