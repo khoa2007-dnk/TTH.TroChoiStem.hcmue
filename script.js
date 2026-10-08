@@ -330,3 +330,32 @@ document.getElementById('btnClearAll').addEventListener('click', () => {
         db.ref('leaderboard').remove();
     }
 });
+// XỬ LÝ TÍNH NĂNG BẮN HỤT
+gameArea.addEventListener('click', (e) => {
+    // Chỉ tính khi game đang trong màn hình chơi (ui2 đang hiển thị)
+    // và người chơi click vào khoảng trống (không bấm trúng con vịt)
+    if (ui2.style.display === 'flex' && !e.target.closest('.duck')) {
+        handleMiss();
+    }
+});
+
+function handleMiss() {
+    if (health <= 0) return;
+    
+    // Trừ 1 máu khi bắn hụt
+    health--;
+    updateHealthUI();
+    
+    // Dừng chuyển động của đàn vịt hiện tại
+    clearInterval(gameInterval);
+    
+    // Xóa toàn bộ vịt đang có trên màn hình
+    gameArea.querySelectorAll('.duck').forEach(d => d.remove());
+    
+    // Kiểm tra nếu hết máu thì kết thúc game, ngược lại chuyển sang câu hỏi/đợt vịt mới
+    if (health <= 0) {
+        gameOver();
+    } else {
+        setTimeout(nextTurn, 300);
+    }
+}
