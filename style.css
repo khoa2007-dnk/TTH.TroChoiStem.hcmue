@@ -358,3 +358,34 @@ body, html {
     font-size: 14px;
 }
 .result-box .btn-danger:hover { background: #ff4d4d; color: white; }
+/* Làm nổi bật khu vực hiển thị Máu */
+#health {
+    position: absolute;
+    bottom: 30px; /* Nâng lên một chút để khỏi dính mép dưới */
+    left: 30px;
+    
+    /* Tạo hộp nền trắng, viền đỏ bo tròn */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: 3px solid #ff4d4d;
+    
+    /* Hiệu ứng phát sáng màu đỏ để thu hút ánh nhìn */
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+    
+    /* Chỉnh chữ và biểu tượng to, rõ ràng */
+    font-size: 28px;
+    font-weight: 900;
+    color: #ff0000;
+    z-index: 100;
+    
+    /* Hiệu ứng nhịp đập nhẹ */
+    animation: pulse 1.5s infinite;
+}
+
+/* Tạo nhịp đập cho thanh máu */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
