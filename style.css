@@ -390,27 +390,3 @@ body, html {
     100% { transform: scale(1); }
 }
 
-/* Giao diện nút Xem trang */
-.btn-view-page {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: 2px solid #2980b9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-    z-index: 100;
-}
-
-.btn-view-page:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    color: white;
-}
