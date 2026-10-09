@@ -16,6 +16,7 @@ const ui1 = document.getElementById('ui-1');
 const ui2 = document.getElementById('ui-2');
 const ui3 = document.getElementById('ui-3');
 const btnPlay = document.getElementById('btnPlay');
+const btnViewLeaderboard = document.getElementById('btnViewLeaderboard');
 const btnPlayAgain = document.getElementById('btnPlayAgain');
 const btnNewGame = document.getElementById('btnNewGame');
 const playerNameInput = document.getElementById('playerName');
@@ -155,6 +156,13 @@ btnPlay.addEventListener('click', () => {
     if(playerNameInput.value.trim() === "") { alert("Vui lòng nhập tên!"); return; }
     currentUser = playerNameInput.value;
     startGame();
+});
+// Nút xem bảng xếp hạng từ trang chủ
+btnViewLeaderboard.addEventListener('click', () => {
+    ui1.style.display = 'none';
+    ui2.style.display = 'none';
+    ui3.style.display = 'flex';
+    document.getElementById('final-score').innerText = "0"; // Gắn tạm điểm là 0 vì chưa chơi
 });
 
 btnPlayAgain.addEventListener('click', startGame);
