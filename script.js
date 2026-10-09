@@ -23,6 +23,7 @@ const gun = document.getElementById('gun');
 const gameArea = document.getElementById('game-area');
 const questionBox = document.getElementById('questionBox');
 
+let isGameOver = false; // Thêm biến cờ hiệu trạng thái game
 let currentUser = "";
 let currentScore = 0;
 let health = 3;
@@ -164,10 +165,11 @@ btnNewGame.addEventListener('click', () => {
     playerNameInput.value = "";
 });
 
-// Vận hành Game
 function startGame() {
     currentScore = 0;
     health = 3;
+    isGameOver = false; // Reset lại trạng thái khi bắt đầu ván mới
+    
     document.getElementById('score').innerText = currentScore;
     updateHealthUI();
     
@@ -316,6 +318,9 @@ function updateHealthUI() {
 
 // Đẩy điểm lên máy chủ đám mây khi thua
 function gameOver() {
+    if (isGameOver) return; // Nếu game đã kết thúc rồi thì chặn lại ngay, không cho đẩy điểm lần 2
+    isGameOver = true;      // Đánh dấu game đã kết thúc
+    
     ui2.style.display = 'none';
     ui3.style.display = 'flex';
     document.getElementById('final-score').innerText = currentScore;
