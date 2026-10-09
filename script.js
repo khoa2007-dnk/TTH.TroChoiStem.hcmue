@@ -101,7 +101,7 @@ const questions = [
     { q: "Phương trình &nbsp; \\( x^3 - 3x + 2 = 0 \\) &nbsp; có bao nhiêu nghiệm?", correct: "2", wrongs: ["1", "3", "0", "4", "V\\text{ô số}"] },
     { q: "Tiệm cận ngang của đồ thị hàm số &nbsp; \\( y = \\frac{2x-1}{x+1} \\) &nbsp; là:", correct: "y = 2", wrongs: ["y = -1", "x = 2", "x = -1", "y = 1", "y = 0"] },
     { q: "Tích phân &nbsp; \\( \\int_1^2 \\frac{1}{x} dx \\) &nbsp; bằng:", correct: "\\ln 2", wrongs: ["\\ln 3", "1", "\\frac{1}{2}", "e^2", "\\ln |x|"] },
-    { q: "Cấp số cộng có \\( u_1=1, d=2 \\). Giá trị \\( u_5 \\) bằng:", correct: "9", wrongs: ["7", "11", "5", "10", "8"] }
+    { q: "Cấp số cộng có \\( u_1=1, d=2 \\). Giá trị \\( u_5 \\) bằng:", correct: "9", wrongs: ["7", "11", "5", "10", "8"] },
     // --- 30 CÂU HỎI BỔ SUNG TỪ TỆP MỚI ---
     { q: "Tính đạo hàm của &nbsp; \\( y=\\pi^{\\pi} \\) &nbsp; tại \\( x=1 \\)", correct: "0", wrongs: ["3", "1", "4", "\\pi", "\\pi^{\\pi}"] },
     { q: "Giá trị của &nbsp; \\( \\ln(e)+\\log_{10}(100) \\)", correct: "3", wrongs: ["1", "4", "2", "0", "10"] },
@@ -362,7 +362,7 @@ document.getElementById('btnClearAll').addEventListener('click', () => {
     }
 });
 // XỬ LÝ TÍNH NĂNG BẮN HỤT
-gameArea.addEventListener('click', (e) => {
+gameArea.addEventListener('mousedown', (e) => { // Sửa 'click' thành 'mousedown'
     // Chỉ tính khi game đang trong màn hình chơi (ui2 đang hiển thị)
     // và người chơi click vào khoảng trống (không bấm trúng con vịt)
     if (ui2.style.display === 'flex' && !e.target.closest('.duck')) {
