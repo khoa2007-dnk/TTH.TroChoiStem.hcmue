@@ -102,6 +102,37 @@ const questions = [
     { q: "Tiệm cận ngang của đồ thị hàm số &nbsp; \\( y = \\frac{2x-1}{x+1} \\) &nbsp; là:", correct: "y = 2", wrongs: ["y = -1", "x = 2", "x = -1", "y = 1", "y = 0"] },
     { q: "Tích phân &nbsp; \\( \\int_1^2 \\frac{1}{x} dx \\) &nbsp; bằng:", correct: "\\ln 2", wrongs: ["\\ln 3", "1", "\\frac{1}{2}", "e^2", "\\ln |x|"] },
     { q: "Cấp số cộng có \\( u_1=1, d=2 \\). Giá trị \\( u_5 \\) bằng:", correct: "9", wrongs: ["7", "11", "5", "10", "8"] }
+    // --- 30 CÂU HỎI BỔ SUNG TỪ TỆP MỚI ---
+    { q: "Tính đạo hàm của &nbsp; \\( y=\\pi^{\\pi} \\) &nbsp; tại \\( x=1 \\)", correct: "0", wrongs: ["3", "1", "4", "\\pi", "\\pi^{\\pi}"] },
+    { q: "Giá trị của &nbsp; \\( \\ln(e)+\\log_{10}(100) \\)", correct: "3", wrongs: ["1", "4", "2", "0", "10"] },
+    { q: "Phương trình &nbsp; \\( \\sin x = \\pi \\) &nbsp; có bao nhiêu nghiệm thực?", correct: "0", wrongs: ["3", "1", "2", "V\\text{ô số}", "4"] },
+    { q: "Rút gọn biểu thức &nbsp; \\( A=2^{\\log_{2}10} \\)", correct: "10", wrongs: ["2", "5", "20", "100", "0"] },
+    { q: "Thể tích khối lập phương có đường chéo một mặt bằng &nbsp; \\( \\sqrt{2} \\)", correct: "1", wrongs: ["2", "3", "4", "2\\sqrt{2}", "\\frac{1}{2}"] },
+    { q: "Hệ số của \\( x \\) trong khai triển &nbsp; \\( (x-1)^2 \\)", correct: "-2", wrongs: ["1", "2", "-1", "0", "-3"] },
+    { q: "Tập giá trị của hàm số &nbsp; \\( y=\\cos x \\) &nbsp; chứa bao nhiêu số nguyên?", correct: "3", wrongs: ["2", "4", "1", "0", "5"] },
+    { q: "Kết quả của &nbsp; \\( \\lim_{n\\to+\\infty}\\frac{4n^2-1}{-n^2+2} \\)", correct: "-4", wrongs: ["2", "0", "-8", "4", "\\infty"] },
+    { q: "Bán kính mặt cầu ngoại tiếp hình hộp chữ nhật có ba kích thước 2, 2, 1 là:", correct: "1.5", wrongs: ["2.5", "3", "2", "1", "4.5"] },
+    { q: "Giá trị của tích phân &nbsp; \\( \\int_{-\\pi}^{\\pi} \\sin(x^3) dx \\) &nbsp; bằng:", correct: "0", wrongs: ["2", "1", "-1", "\\pi", "2\\pi"] },
+    { q: "Một tổ có 5 người. Có bao nhiêu cách chọn ra 1 tổ trưởng?", correct: "5", wrongs: ["10", "1", "4", "15", "20"] },
+    { q: "Tính giới hạn &nbsp; \\( L = \\lim_{x\\to-\\infty}\\frac{x}{|x|} \\)", correct: "-1", wrongs: ["2", "0", "1", "-\\infty", "+\\infty"] },
+    { q: "Tổng &nbsp; \\( C_n^0+C_n^1+\\dots+C_n^n \\) &nbsp; bằng:", correct: "2^n", wrongs: ["0", "n^2", "n", "2n", "n!"] },
+    { q: "Khoảng cách từ &nbsp; \\( M(1; 2; 3) \\) &nbsp; đến mặt phẳng \\( (Oxy) \\) là:", correct: "3", wrongs: ["1", "4", "2", "\\sqrt{14}", "5"] },
+    { q: "Số đường tiệm cận đứng của đồ thị hàm số &nbsp; \\( y=\\frac{x-1}{x^2-1} \\) &nbsp; là:", correct: "1", wrongs: ["0", "3", "2", "4", "V\\text{ô số}"] },
+    { q: "Số lượng các đường tiệm cận của đồ thị hàm số &nbsp; \\( y=\\frac{1}{x} \\) &nbsp; là:", correct: "2", wrongs: ["3", "1", "0", "4", "V\\text{ô số}"] },
+    { q: "Đạo hàm cấp 2 của hàm số &nbsp; \\( y=x^2+5x-3 \\) &nbsp; là:", correct: "2", wrongs: ["5", "0", "1", "2x+5", "x"] },
+    { q: "Bán kính đường tròn &nbsp; \\( x^2+y^2-4x+6y-3=0 \\) &nbsp; là:", correct: "4", wrongs: ["2", "16", "3", "8", "1"] },
+    { q: "Khoảng cách giữa 2 đường thẳng song song &nbsp; \\( x-y+1=0 \\) &nbsp; và &nbsp; \\( x-y+3=0 \\)", correct: "\\sqrt{2}", wrongs: ["4", "2", "1", "3", "2\\sqrt{2}"] },
+    { q: "Tính tổng các nghiệm của phương trình &nbsp; \\( |x-2|=1 \\)", correct: "4", wrongs: ["3", "1", "2", "0", "-4"] },
+    { q: "Thể tích khối lăng trụ có diện tích đáy \\( B=4 \\) và chiều cao \\( h=3 \\) là:", correct: "12", wrongs: ["4", "7", "24", "6", "16"] },
+    { q: "Biểu thức &nbsp; \\( P=\\frac{0!}{1!}+\\frac{1!}{0!} \\) &nbsp; có giá trị bằng bao nhiêu?", correct: "2", wrongs: ["0", "4", "1", "3", "5"] },
+    { q: "Trung bình cộng của ba số: -3, 0, 6 là:", correct: "1", wrongs: ["2", "1.5", "3", "0", "4"] },
+    { q: "Phương sai của mẫu số liệu &nbsp; \\( 5, 5, 5, 5 \\) &nbsp; bằng:", correct: "0", wrongs: ["25", "1", "5", "10", "20"] },
+    { q: "Nếu &nbsp; \\( 1+2+3+\\dots+n=55 \\) &nbsp; thì \\( n \\) bằng:", correct: "10", wrongs: ["9", "11", "12", "15", "8"] },
+    { q: "Giá trị của &nbsp; \\( \\sqrt{(\\sqrt{5}-3)^2} \\) &nbsp; là:", correct: "3-\\sqrt{5}", wrongs: ["\\sqrt{5}-3", "2", "5", "3+\\sqrt{5}", "-2"] },
+    { q: "Một cấp số cộng có \\( u_1=5, u_2=2 \\). Khi đó \\( u_{10} \\) bằng:", correct: "-22", wrongs: ["32", "-25", "16", "22", "-28"] },
+    { q: "Giá trị của &nbsp; \\( \\frac{\\log_5 16}{\\log_5 2} \\) &nbsp; là:", correct: "4", wrongs: ["3", "5", "6", "8", "2"] },
+    { q: "Diện tích mặt cầu có bán kính \\( R=2 \\) bằng:", correct: "16\\pi", wrongs: ["4\\pi", "8\\pi", "12\\pi", "32\\pi", "64\\pi"] },
+    { q: "Nếu &nbsp; \\( x+\\frac{1}{x}=3 \\), thì &nbsp; \\( x^2+\\frac{1}{x^2} \\) &nbsp; bằng bao nhiêu?", correct: "7", wrongs: ["5", "9", "11", "13", "3"] }
 ];
 let currentQuestion = {};
 
