@@ -389,19 +389,27 @@ body, html {
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
-.btn-leaderboard {
-    margin-top: 15px;
-    padding: 12px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(90deg, #3498db, #2980b9);
-    border: none;
-    border-radius: 25px;
+/* Nút xem bảng xếp hạng góc trên cùng bên phải */
+.btn-leaderboard-top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    font-size: 28px; /* Kích thước biểu tượng cúp */
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    border: 3px solid #fff;
+    border-radius: 15px; /* Bo góc vuông */
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 100;
 }
-.btn-leaderboard:hover {
-    transform: scale(1.05);
+
+.btn-leaderboard-top:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
