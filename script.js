@@ -108,7 +108,7 @@ const questions = [
     { q: "Phương trình &nbsp; \\( \\sin x = \\pi \\) &nbsp; có bao nhiêu nghiệm thực?", correct: "0", wrongs: ["3", "1", "2", "V\\text{ô số}", "4"] },
     { q: "Rút gọn biểu thức &nbsp; \\( A=2^{\\log_{2}10} \\)", correct: "10", wrongs: ["2", "5", "20", "100", "0"] },
     { q: "Thể tích khối lập phương có đường chéo một mặt bằng &nbsp; \\( \\sqrt{2} \\)", correct: "1", wrongs: ["2", "3", "4", "2\\sqrt{2}", "\\frac{1}{2}"] },
-    { q: "Hệ số của \\( x \\) trong khai triển &nbsp; \\( (x-1)^2 \\)", correct: "-2", wrongs: ["1", "2", "-1", "0", "-3"] },
+    { q: "Hệ số của &nbsp; \\( x \\) &nbsp; trong khai triển &nbsp; \\( (x-1)^2 \\)", correct: "-2", wrongs: ["1", "2", "-1", "0", "-3"] },
     { q: "Tập giá trị của hàm số &nbsp; \\( y=\\cos x \\) &nbsp; chứa bao nhiêu số nguyên?", correct: "3", wrongs: ["2", "4", "1", "0", "5"] },
     { q: "Kết quả của &nbsp; \\( \\lim_{n\\to+\\infty}\\frac{4n^2-1}{-n^2+2} \\)", correct: "-4", wrongs: ["2", "0", "-8", "4", "\\infty"] },
     { q: "Bán kính mặt cầu ngoại tiếp hình hộp chữ nhật có ba kích thước 2, 2, 1 là:", correct: "1.5", wrongs: ["2.5", "3", "2", "1", "4.5"] },
